@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart University Result Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🏛️</div>
+        <div>
+          <h1>Smart Result Generator</h1>
+          <p class="muted">University-grade sheet • SGPA • CGPA • QR • PDF</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" title="Toggle theme">🌓</button>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- LEFT: Form -->
+      <section class="card form-card">
+        <h2>Student Info</h2>
+        <div class="row">
+          <input id="stuName" placeholder="Student Name" />
+          <input id="rollNo" placeholder="Enrollment / Roll No" />
+        </div>
+        <div class="row">
+          <input id="program" placeholder="Program (e.g. B.Tech CSE)" />
+          <select id="semester">
+            <option value="1">Semester 1</option><option value="2">Semester 2</option>
+            <option value="3">Semester 3</option><option value="4">Semester 4</option>
+            <option value="5" selected>Semester 5</option><option value="6">Semester 6</option>
+            <option value="7">Semester 7</option><option value="8">Semester 8</option>
+          </select>
+        </div>
+
+        <div class="row actions-row">
+          <button id="addSubject" class="btn">+ Add Subject</button>
+          <button id="addPrev" class="btn ghost">+ Prev SGPA</button>
+          <button id="generate" class="btn primary">Generate Result</button>
+          <button id="reset" class="btn danger">Reset</button>
+        </div>
+
+        <h3>Subjects</h3>
+        <div id="subjects" class="subjects"></div>
+
+        <h3>Previous SGPAs (optional)</h3>
+        <div id="prevSgpas" class="prevs"></div>
+      </section>
+
+      <!-- RIGHT: Result Card -->
+      <section id="resultCard" class="card result-card hidden">
+        <div class="result-header">
+          <div>
+            <h3 id="uniName">Your University</h3>
+            <p id="outProgram" class="muted"></p>
+          </div>
+          <div class="meta">
+            <p><strong>Sem:</strong> <span id="outSemester"></span></p>
+            <p><strong>Enrol:</strong> <span id="outRoll"></span></p>
+          </div>
+        </div>
+
+        <div class="student-line">
+          <p><strong>Student:</strong> <span id="outName"></span></p>
+          <p class="muted" id="genTime"></p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="result-table">
+            <thead><tr><th>Code</th><th>Subject</th><th>Credits</th><th>Grade</th><th>Points</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+            <tfoot>
+              <tr><td colspan="2" class="right">Total Credits</td><td id="totalCredits"></td><td class="right">SGPA</td><td id="sgpaOut"></td></tr>
+              <tr><td colspan="4" class="right">CGPA</td><td id="cgpaOut"></td></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="result-bottom">
+          <div class="qr-area">
+            <p class="muted">Scan to verify</p>
+            <canvas id="qrCanvas"></canvas>
+          </div>
+
+          <div class="result-actions">
+            <button id="printBtn" class="btn">Print</button>
+            <button id="pdfBtn" class="btn primary">Download PDF</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    
+  </div>
+
+  <!-- Required libraries (must be before script.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
